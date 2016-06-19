@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Client Test</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.6/socket.io.min.js"></script>
+</head>
+<div>
+	<p>Please open up your browser console to get informations...</p>
+</div>
+
+<body>
+	<script type="text/javascript">
+		// connect info
+		var userid = 'daniel';
+		var connectString = 'userid=' + userid;
+		console.log(connectString);
+		// connect to sockets
+		var privateSocket = io.connect('/private', {
+			query: connectString
+		});
+		var publicSocket = io.connect('/public', {
+			query: connectString
+		});
+		// socket message events
+		privateSocket.on('message', function(data) {
+			console.log('private-socket');
+			console.log('type', data.type);
+			console.log('title', data.title);
+			console.log('message', data.message);
+			console.log('time', data.time);
+			console.log('optparam', data.optparam);
+		});
+		publicSocket.on('message', function(data) {
+			console.log('public-socket');
+			console.log('type', data.type);
+			console.log('title', data.title);
+			console.log('message', data.message);
+			console.log('time', data.time);
+			console.log('optparam', data.optparam);
+		});
+	</script>
+
+</body>
+
+</html>

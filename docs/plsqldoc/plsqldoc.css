@@ -1,0 +1,168 @@
+/* PL/SQL Developer, plsqldoc styles */
+
+BODY
+{ 
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  background-color : #ECECEC;
+  font-size : 12px;
+  font-weight: normal;
+  font-style: normal;
+  margin-left: 15px;
+  margin-top: 25px;
+}
+
+A         {color: #333300; text-decoration: underline;}
+A:active  {color: #2020C0; text-decoration: underline;}    
+A:hover   {color: #4040C0; text-decoration: underline;}
+A:visited {color: #101060; text-decoration: underline;} 
+
+
+/* Style for Title of document (Package ...) */
+    
+.MAIN_TITLE
+{
+ font-family: Verdana,Arial,Helvetica,sans-serif;
+ font-size : medium;
+ color: #992266;
+ font-weight: bold;
+ margin-bottom : 12px;
+}    
+
+
+/* Style for smaller Titles (Program Units, Exceptions, ...) */
+
+.SUB_TITLE
+{
+ font-family: Verdana,Arial,Helvetica,sans-serif;
+ font-size: medium;
+ color: #992266;
+ font-weight: normal;
+ margin-bottom: 12px;
+}    
+
+
+/* Type name in description */
+
+.TYPE_TITLE
+{
+ font-family: Verdana,Arial,Helvetica,sans-serif;
+ font-size: small;
+ color: #992266;
+ font-weight: bold;
+ margin-bottom: 0px;
+}    
+
+
+/* Type name in list */
+
+.TYPE_ITEM
+{
+ font-family: Verdana,Arial,Helvetica,sans-serif;
+ font-size: x-small;
+ color: #101060;
+ font-weight: bold;
+ margin-bottom: 0px;
+}    
+
+/* 'See Also' list title */
+
+.LIST_TITLE
+{ 
+ font-family: Verdana,Arial,Helvetica,sans-serif;
+ font-size: small;
+ color: #301080;
+ font-weight: bold;
+ font-style: normal;
+ margin-bottom: 0px;
+}
+
+
+/* 'See Also' list item description */
+/* Specific style can be specified for the different groups like Usage, Parameter, ets */
+/* with a .LIST_ITEM_[GROUP] tag like .LIST_ITEM_USAGE                                 */                  
+
+.LIST_ITEM
+{ 
+ font-family: Verdana,Arial,Helvetica,sans-serif;
+ font-size: x-small;
+ color: #101060;
+ font-weight: bold;
+ margin-bottom: 0px;
+}
+
+       	
+/* Description */
+/* Specific style can be specified for the different groups like Usage, Parameter, ets */
+/* with a .DESC_TEXT_[GROUP] tag like .DESC_TEXT_USAGE                                 */                  
+
+.DESC_TEXT
+{ 
+ font-family: Verdana,Arial,Helvetica,sans-serif;
+ font-size: x-small;
+ color: #101060;
+ font-weight: normal;
+ margin-bottom: 0px;
+}
+
+
+/* Formatted text */
+
+.DECL_TEXT
+{ 
+ font-family: Courier;
+ font-size: x-small;
+ color: #101080;
+ font-weight: normal;
+ margin-bottom : 0px;
+}
+
+
+/* Table that holds the Title of the document */
+
+.MAIN_TABLE
+{
+ font-family: Verdana,Arial,Tahoma,Helvetica,sans-serif;
+ font-size: x-small;
+ font-weight: normal;
+ font-style: normal;
+ background-color: #E0E0E0;
+ width: 100%;
+}
+
+
+/* Table that holds Program Units list */
+
+.SUB_TABLE
+{
+ font-family: Verdana,Arial,Tahoma,Helvetica,sans-serif;
+ font-size: x-small;
+ font-weight: normal;
+ font-style: normal;
+ background-color: #E8E8E8;
+ VALIGN: "TOP";
+ width: 100%;
+}
+
+   
+/* Table that holds the See Also list */
+
+.LIST_TABLE
+{
+ font-family: Verdana,Arial,Tahoma,Helvetica,sans-serif;
+ font-size: x-small;
+ font-weight: normal;
+ font-style: normal;
+ background-color: #ECECEC;
+ width: 100%;
+}
+
+
+/* Table that holds the See Also list */
+
+.SIMPLE_TABLE
+{
+ font-family: Verdana,Arial,Tahoma,Helvetica,sans-serif;
+ font-size: x-small;
+ font-weight: normal;
+ font-style: normal;
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Overview Services</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href='//fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+		body {
+			font-family: 'Courgette', cursive;
+		}
+
+		body {
+			background: #f3f3e1;
+		}
+
+		.wrap {
+			margin: 0 auto;
+			width: 1000px;
+		}
+
+		.logo {
+			margin-top: 50px;
+		}
+
+		.logo h1 {
+			font-size: 100px;
+			color: #8F8E8C;
+			text-align: center;
+			margin-bottom: 1px;
+			text-shadow: 1px 1px 6px #fff;
+		}
+
+		.logo p {
+			color: rgb(228, 146, 162);
+			font-size: 20px;
+			margin-top: 1px;
+			text-align: center;
+		}
+
+		.logo p span {
+			color: lightgreen;
+		}
+
+		.sub a {
+			color: white;
+			background: #8F8E8C;
+			text-decoration: none;
+			padding: 7px 120px;
+			font-size: 13px;
+			font-family: arial, serif;
+			font-weight: bold;
+			-webkit-border-radius: 3em;
+			-moz-border-radius: .1em;
+			-border-radius: .1em;
+		}
+
+		#textarea-big {
+			text-decoration: none;
+			margin-left: auto;
+			margin-right: auto;
+			border: 2px solid;
+			border-color: #8F8E8C;
+			width: 350px;
+			height: 650px;
+		}
+
+		#textarea-small {
+			text-decoration: none;
+			margin-left: auto;
+			margin-right: auto;
+			border: 2px solid;
+			border-color: #8F8E8C;
+			width: 350px;
+			height: 300px;
+		}
+
+		pre {
+			white-space: -moz-pre-wrap;
+			white-space: -pre-wrap;
+			white-space: -o-pre-wrap;
+			white-space: pre-wrap;
+			word-wrap: break-word;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="logo">
+			<h1>Overview Services</h1>
+			<p>notifyuser (GET)</p>
+			<div id="textarea-big">
+				<strong>Parameter:</strong>
+				<br>
+				<ul>
+					<li>userid (required)</li>
+					<li>room (required)</li>
+					<li>type (required)</li>
+					<li>optparam (optional)</li>
+				</ul>
+				<span>rooms: private, public</span>
+				<br>
+				<span>types: info, success, warn, error</span>
+				<br>
+				<span>userid=all and room=public for all users</span>
+				<br>
+				<br>
+				<strong>Header Vars:</strong>
+				<br>
+				<ul>
+					<li>notify-title (required)</li>
+					<li>notify-message (required)</li>
+				</ul>
+				<br>
+				<strong>Test Command:</strong>
+				<br>
+				<span>For User hd in room private</span>
+				<pre>curl -H "notify-title: Test Title Text" -H "notify-message: Test Message Text" "_proto_//_host_:_port_/notifyuser?userid=daniel&room=private&type=info&optparam=hello123"</pre>
+				<span>For all Users in room public</span>
+				<pre>curl -H "notify-title: Test Title Text" -H "notify-message: Test Message Text" "_proto_//_host_:_port_/notifyuser?userid=all&room=public&type=warn&optparam=hello123"</pre>
+			</div>
+			<div class="sub">
+				<p><a href="/notifyuser?userid=daniel&room=private&type=info&optparam=hello123" target="_blank">Demo call</a></p>
+			</div>
+			<br>
+			<p>status (GET)</p>
+			<div id="textarea-small">
+				<strong>Server Status Page</strong>
+				<br>
+				<br>
+				<span>Status page with some server informations...</span>
+			</div>
+			<div class="sub">
+				<p><a href="/status" target="_blank">Demo call</a></p>
+			</div>
+			<br>
+			<p>testclient (GET)</p>
+			<div id="textarea-small">
+				<strong>Test Client Page</strong>
+				<br>
+				<br>
+				<span>Test page to connect to websocket server...</span>
+			</div>
+			<div class="sub">
+				<p><a href="/testclient" target="_blank">Demo call</a></p>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		window.onload = function replaceHost() {
+			var lProtocol = window.location.protocol;
+			var lHostname = window.location.hostname;
+			var lPort = window.location.port;
+			document.body.innerHTML = document.body.innerHTML.replace(/_proto_/g, lProtocol);
+			document.body.innerHTML = document.body.innerHTML.replace(/_host_/g, lHostname);
+			document.body.innerHTML = document.body.innerHTML.replace(/_port_/g, lPort);
+		}
+	</script>
+</body>
+
+</html>

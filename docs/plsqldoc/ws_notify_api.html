@@ -1,0 +1,899 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="plsqldoc.css">
+ <TITLE>Package ws_notify_api</TITLE>
+ <META name="object" content="PACKAGE">
+ <META name="name" content="ws_notify_api">
+ <META name="description" content="API Package Spec for Node Notify Websocket REST Calls">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL></SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package ws_notify_api</P>
+API Package Spec for Node Notify Websocket REST Calls<br>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_rest_notify_user">do_rest_notify_user</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification over REST to connected users
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_private_info">do_notify_user_private_info</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to User / Room: Private / Type: Info
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_private_success">do_notify_user_private_success</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to User / Room: Private / Type: Success
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_private_warn">do_notify_user_private_warn</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to User / Room: Private / Type: Warn
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_private_error">do_notify_user_private_error</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to User / Room: Private / Type: Error
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_public_info">do_notify_user_public_info</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to User / Room: Public / Type: Info
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_public_success">do_notify_user_public_success</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to User / Room: Public / Type: Success
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_public_warn">do_notify_user_public_warn</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to User / Room: Public / Type: Warn
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_public_error">do_notify_user_public_error</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to User / Room: Public / Type: Error
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_all_public_info">do_notify_all_public_info</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to all Users / Room: Public / Type: Info
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_all_public_success">do_notify_all_public_success</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to all Users / Room: Public / Type: Success
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_all_public_warn">do_notify_all_public_warn</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to all Users / Room: Public / Type: Warn
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_all_public_error">do_notify_all_public_error</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Send Websocket Notification to all Users / Room: Public / Type: Error
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Variables"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Variables
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_ws_rest_host">g_ws_rest_host</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Websocket REST Call defaults
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_ws_rest_port">g_ws_rest_port</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_ws_rest_path">g_ws_rest_path</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_ws_rest_proto">g_ws_rest_proto</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+http or https
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_ws_rest_base_url">g_ws_rest_base_url</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_ws_basic_auth_user">g_ws_basic_auth_user</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+security defaults
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_ws_basic_auth_pwd">g_ws_basic_auth_pwd</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_ssl_wallet_path">g_ssl_wallet_path</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+wallet info: only if <A HREF=#g_ws_rest_proto>g_ws_rest_proto</A> = https
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#g_ssl_wallet_pwd">g_ssl_wallet_pwd</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+set your wallet password
+</TD></TR>
+</TABLE>
+<BR>
+<A NAME="Constants"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Constants
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#error_http_status_code">error_http_status_code</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Exceptions Error Codes
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="g_ws_rest_host"></A>
+<P CLASS="TYPE_TITLE">
+g_ws_rest_host
+</P>
+<PRE CLASS="DECL_TEXT">
+g_ws_rest_host     VARCHAR2(50) := 'localhost';
+</PRE>
+<P CLASS="DESC_TEXT">
+Websocket REST Call defaults<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="g_ws_rest_port"></A>
+<P CLASS="TYPE_TITLE">
+g_ws_rest_port
+</P>
+<PRE CLASS="DECL_TEXT">
+g_ws_rest_port     VARCHAR2(50) := '8080';
+</PRE>
+<HR>
+<A NAME="g_ws_rest_path"></A>
+<P CLASS="TYPE_TITLE">
+g_ws_rest_path
+</P>
+<PRE CLASS="DECL_TEXT">
+g_ws_rest_path     VARCHAR2(50) := '/notifyuser';
+</PRE>
+<HR>
+<A NAME="g_ws_rest_proto"></A>
+<P CLASS="TYPE_TITLE">
+g_ws_rest_proto
+</P>
+<PRE CLASS="DECL_TEXT">
+g_ws_rest_proto    VARCHAR2(50) := 'http';
+</PRE>
+<P CLASS="DESC_TEXT">
+http or https<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="g_ws_rest_base_url"></A>
+<P CLASS="TYPE_TITLE">
+g_ws_rest_base_url
+</P>
+<PRE CLASS="DECL_TEXT">
+g_ws_rest_base_url VARCHAR2(200) := <A HREF=#g_ws_rest_proto>ws_notify_api.g_ws_rest_proto</A> ||
+                                    '://' || <A HREF=#g_ws_rest_host>ws_notify_api.g_ws_rest_host</A> || ':' ||
+                                    <A HREF=#g_ws_rest_port>ws_notify_api.g_ws_rest_port</A> ||
+                                    ws_notify_api.g_ws_rest_path;
+</PRE>
+<HR>
+<A NAME="g_ws_basic_auth_user"></A>
+<P CLASS="TYPE_TITLE">
+g_ws_basic_auth_user
+</P>
+<PRE CLASS="DECL_TEXT">
+g_ws_basic_auth_user VARCHAR2(100) := '';
+</PRE>
+<P CLASS="DESC_TEXT">
+security defaults<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="g_ws_basic_auth_pwd"></A>
+<P CLASS="TYPE_TITLE">
+g_ws_basic_auth_pwd
+</P>
+<PRE CLASS="DECL_TEXT">
+g_ws_basic_auth_pwd  VARCHAR2(100) := '';
+</PRE>
+<HR>
+<A NAME="g_ssl_wallet_path"></A>
+<P CLASS="TYPE_TITLE">
+g_ssl_wallet_path
+</P>
+<PRE CLASS="DECL_TEXT">
+g_ssl_wallet_path VARCHAR2(200) := 'file:/home/oracle/wallet';
+</PRE>
+<P CLASS="DESC_TEXT">
+wallet info: only if <A HREF=#g_ws_rest_proto>g_ws_rest_proto</A> = https<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="g_ssl_wallet_pwd"></A>
+<P CLASS="TYPE_TITLE">
+g_ssl_wallet_pwd
+</P>
+<PRE CLASS="DECL_TEXT">
+g_ssl_wallet_pwd  VARCHAR2(100) := 'pwd';
+</PRE>
+<P CLASS="DESC_TEXT">
+set your wallet password<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="error_http_status_code"></A>
+<P CLASS="TYPE_TITLE">
+error_http_status_code
+</P>
+<PRE CLASS="DECL_TEXT">
+error_http_status_code CONSTANT NUMBER := -20002;
+</PRE>
+<P CLASS="DESC_TEXT">
+Exceptions Error Codes<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_rest_notify_user"></A>
+<P CLASS="TYPE_TITLE">
+do_rest_notify_user
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_rest_notify_user(i_userid   IN VARCHAR2,
+                              i_room     IN VARCHAR2,
+                              i_type     IN VARCHAR2,
+                              i_title    IN VARCHAR2,
+                              i_message  IN VARCHAR2,
+                              i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification over REST to connected users<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_userid&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_room&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(&quot;private&quot; or &quot;public&quot;)<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_type&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(info, success, warn, error)<br>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_user_private_info"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_private_info
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_user_private_info(i_userid   IN VARCHAR2,
+                                      i_title    IN VARCHAR2,
+                                      i_message  IN VARCHAR2,
+                                      i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to User / Room: Private / Type: Info<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_userid&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_user_private_success"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_private_success
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_user_private_success(i_userid   IN VARCHAR2,
+                                         i_title    IN VARCHAR2,
+                                         i_message  IN VARCHAR2,
+                                         i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to User / Room: Private / Type: Success<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_userid&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_user_private_warn"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_private_warn
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_user_private_warn(i_userid   IN VARCHAR2,
+                                      i_title    IN VARCHAR2,
+                                      i_message  IN VARCHAR2,
+                                      i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to User / Room: Private / Type: Warn<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_userid&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_user_private_error"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_private_error
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_user_private_error(i_userid   IN VARCHAR2,
+                                       i_title    IN VARCHAR2,
+                                       i_message  IN VARCHAR2,
+                                       i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to User / Room: Private / Type: Error<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_userid&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_user_public_info"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_public_info
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_user_public_info(i_userid   IN VARCHAR2,
+                                     i_title    IN VARCHAR2,
+                                     i_message  IN VARCHAR2,
+                                     i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to User / Room: Public / Type: Info<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_userid&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_user_public_success"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_public_success
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_user_public_success(i_userid   IN VARCHAR2,
+                                        i_title    IN VARCHAR2,
+                                        i_message  IN VARCHAR2,
+                                        i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to User / Room: Public / Type: Success<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_userid&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_user_public_warn"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_public_warn
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_user_public_warn(i_userid   IN VARCHAR2,
+                                     i_title    IN VARCHAR2,
+                                     i_message  IN VARCHAR2,
+                                     i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to User / Room: Public / Type: Warn<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_userid&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_user_public_error"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_public_error
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_user_public_error(i_userid   IN VARCHAR2,
+                                      i_title    IN VARCHAR2,
+                                      i_message  IN VARCHAR2,
+                                      i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to User / Room: Public / Type: Error<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_userid&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_all_public_info"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_all_public_info
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_all_public_info(i_title    IN VARCHAR2,
+                                    i_message  IN VARCHAR2,
+                                    i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to all Users / Room: Public / Type: Info<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_all_public_success"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_all_public_success
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_all_public_success(i_title    IN VARCHAR2,
+                                       i_message  IN VARCHAR2,
+                                       i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to all Users / Room: Public / Type: Success<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_all_public_warn"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_all_public_warn
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_all_public_warn(i_title    IN VARCHAR2,
+                                    i_message  IN VARCHAR2,
+                                    i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to all Users / Room: Public / Type: Warn<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="do_notify_all_public_error"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_all_public_error
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE do_notify_all_public_error(i_title    IN VARCHAR2,
+                                     i_message  IN VARCHAR2,
+                                     i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Send Websocket Notification to all Users / Room: Public / Type: Error<br>
+
+<BR>
+</P>
+<A NAME="Parameters"></A>
+<TABLE CLASS="LIST_TABLE"><TR><TD CLASS="LIST_TITLE">
+Parameters
+</TD></TR></TABLE>
+<TABLE CLASS="LIST_TABLE">
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_title&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_message&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+</TD><TD VALIGN="TOP" CLASS="LIST_ITEM" WIDTH=1%>
+i_optparam&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+(Optional Parameter String)<br>
+
+</TD></TR>
+</TABLE>
+<BR>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

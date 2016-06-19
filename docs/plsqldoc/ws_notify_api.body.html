@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="plsqldoc.css">
+ <TITLE>Package body ws_notify_api</TITLE>
+ <META name="object" content="PACKAGE BODY">
+ <META name="name" content="ws_notify_api">
+ <META name="description" content="API Package Body for Node Notify Websocket REST Calls">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL></SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package body ws_notify_api</P>
+API Package Body for Node Notify Websocket REST Calls<br>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#check_error_http_status">check_error_http_status</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Check Server response HTTP error (2XX Status codes) Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#set_http_headers">set_http_headers</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Set HTTP headers for REST calls Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_rest_notify_user">do_rest_notify_user</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification over REST to connected users Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_private_info">do_notify_user_private_info</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to User / Room: Private / Type: Info Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_private_success">do_notify_user_private_success</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to User / Room: Private / Type: Success Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_private_warn">do_notify_user_private_warn</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to User / Room: Private / Type: Warn Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_private_error">do_notify_user_private_error</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to User / Room: Private / Type: Error Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_public_info">do_notify_user_public_info</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to User / Room: Public / Type: Info Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_public_success">do_notify_user_public_success</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to User / Room: Public / Type: Success Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_public_warn">do_notify_user_public_warn</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to User / Room: Public / Type: Warn Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_user_public_error">do_notify_user_public_error</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to User / Room: Public / Type: Error Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_all_public_info">do_notify_all_public_info</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to all Users / Room: Public / Type: Info Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_all_public_success">do_notify_all_public_success</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to all Users / Room: Public / Type: Success Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_all_public_warn">do_notify_all_public_warn</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to all Users / Room: Public / Type: Warn Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#do_notify_all_public_error">do_notify_all_public_error</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Purpose: Send Websocket Notification to all Users / Room: Public / Type: Error Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="check_error_http_status"></A>
+<P CLASS="TYPE_TITLE">
+check_error_http_status
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE check_error_http_status
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Check Server response HTTP error (2XX Status codes) Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="set_http_headers"></A>
+<P CLASS="TYPE_TITLE">
+set_http_headers
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE set_http_headers(i_title   IN VARCHAR2,
+                           i_message IN VARCHAR2)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Set HTTP headers for REST calls Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_rest_notify_user"></A>
+<P CLASS="TYPE_TITLE">
+do_rest_notify_user
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_rest_notify_user">do_rest_notify_user</A>(i_userid   IN VARCHAR2,
+                              i_room     IN VARCHAR2,
+                              i_type     IN VARCHAR2,
+                              i_title    IN VARCHAR2,
+                              i_message  IN VARCHAR2,
+                              i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification over REST to connected users Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_user_private_info"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_private_info
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_user_private_info">do_notify_user_private_info</A>(i_userid   IN VARCHAR2,
+                                      i_title    IN VARCHAR2,
+                                      i_message  IN VARCHAR2,
+                                      i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to User / Room: Private / Type: Info Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_user_private_success"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_private_success
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_user_private_success">do_notify_user_private_success</A>(i_userid   IN VARCHAR2,
+                                         i_title    IN VARCHAR2,
+                                         i_message  IN VARCHAR2,
+                                         i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to User / Room: Private / Type: Success Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_user_private_warn"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_private_warn
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_user_private_warn">do_notify_user_private_warn</A>(i_userid   IN VARCHAR2,
+                                      i_title    IN VARCHAR2,
+                                      i_message  IN VARCHAR2,
+                                      i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to User / Room: Private / Type: Warn Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_user_private_error"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_private_error
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_user_private_error">do_notify_user_private_error</A>(i_userid   IN VARCHAR2,
+                                       i_title    IN VARCHAR2,
+                                       i_message  IN VARCHAR2,
+                                       i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to User / Room: Private / Type: Error Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_user_public_info"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_public_info
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_user_public_info">do_notify_user_public_info</A>(i_userid   IN VARCHAR2,
+                                     i_title    IN VARCHAR2,
+                                     i_message  IN VARCHAR2,
+                                     i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to User / Room: Public / Type: Info Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_user_public_success"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_public_success
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_user_public_success">do_notify_user_public_success</A>(i_userid   IN VARCHAR2,
+                                        i_title    IN VARCHAR2,
+                                        i_message  IN VARCHAR2,
+                                        i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to User / Room: Public / Type: Success Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_user_public_warn"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_public_warn
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_user_public_warn">do_notify_user_public_warn</A>(i_userid   IN VARCHAR2,
+                                     i_title    IN VARCHAR2,
+                                     i_message  IN VARCHAR2,
+                                     i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to User / Room: Public / Type: Warn Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_user_public_error"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_user_public_error
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_user_public_error">do_notify_user_public_error</A>(i_userid   IN VARCHAR2,
+                                      i_title    IN VARCHAR2,
+                                      i_message  IN VARCHAR2,
+                                      i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to User / Room: Public / Type: Error Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_all_public_info"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_all_public_info
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_all_public_info">do_notify_all_public_info</A>(i_title    IN VARCHAR2,
+                                    i_message  IN VARCHAR2,
+                                    i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to all Users / Room: Public / Type: Info Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_all_public_success"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_all_public_success
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_all_public_success">do_notify_all_public_success</A>(i_title    IN VARCHAR2,
+                                       i_message  IN VARCHAR2,
+                                       i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to all Users / Room: Public / Type: Success Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_all_public_warn"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_all_public_warn
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_all_public_warn">do_notify_all_public_warn</A>(i_title    IN VARCHAR2,
+                                    i_message  IN VARCHAR2,
+                                    i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to all Users / Room: Public / Type: Warn Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="do_notify_all_public_error"></A>
+<P CLASS="TYPE_TITLE">
+do_notify_all_public_error
+</P>
+<PRE CLASS="DECL_TEXT">
+PROCEDURE <A HREF="ws_notify_api.html#do_notify_all_public_error">do_notify_all_public_error</A>(i_title    IN VARCHAR2,
+                                     i_message  IN VARCHAR2,
+                                     i_optparam IN VARCHAR2 := NULL)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Purpose: Send Websocket Notification to all Users / Room: Public / Type: Error Author:&nbsp; Daniel Hochleitner Created: 17.06.2016 Changed:<br>
+
+<BR>
+</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>
