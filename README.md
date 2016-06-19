@@ -35,7 +35,7 @@ This bundle includes all these features and simultaneously is designed to use al
 Developers don´t need to be experts in Javascript or JQuery and stuff like that (But as always, it´s not a bad skill!;) ). APEX Know-How and a good knowledge of using Dynamic Actions should be enough to implement this notification bundle in your applications...
 
 #### Infrastructure Diagram
-![](https://raw.githubusercontent.com/Dani3lSun/apex-websocket-notify-bundle/master/docs/infrastructure_diagram.png)
+![](https://raw.githubusercontent.com/Dani3lSun/apex-websocket-notify-bundle/master/docs/infrastructure_diagram.png?token=AAqqPoyxMnnVVfwJqIU3i2gZll_-IEBaks5XcFQzwA%3D%3D)
 
 
 ## Demo
