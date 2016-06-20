@@ -28,6 +28,7 @@ This bundle includes all these features and simultaneously is designed to use al
 - Ready to go Node.js websocket server especially for notifications using socket.io
 - A native PL/SQL package to send all kinds of different messages/notifications using APEX_WEB_SERVICE
 - APEX plugins for all kind of events that are needed by the notification system:
+
   - Initialize websocket connection to server
   - Send messages and notifications to users
   - Show different styled notifications on client side
@@ -98,9 +99,9 @@ There you should get a overview of all supported services by the Notification Se
 
 This helper pages are supported by the server:
 
-- Overview Services: http://[host-ip-of-server]:8080
-- Server Status Page: http://[host-ip-of-server]:8080/status
-- Websocket Test Client: http://[host-ip-of-server]:8080/testclient
+- **Overview Services:** http://[host-ip-of-server]:8080
+- **Server Status Page:** http://[host-ip-of-server]:8080/status
+- **Websocket Test Client:** http://[host-ip-of-server]:8080/testclient
 
 #### Configure Notification Package
 
