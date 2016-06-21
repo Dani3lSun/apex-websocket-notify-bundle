@@ -11,10 +11,13 @@
     - [Installation Database](#installation-database)
       - [Database ACL](#database-acl)
       - [Oracle SSL Wallet](#oracle-ssl-wallet)
-      - [Compile the PL/SQL package](#compile-the-plsql-package)
+      - [Compile the PL/SQL package](#compile-plsql-package)
     - [Installation APEX](#installation-apex)
       - [Install Plugins](#install-plugins)
   - [Usage](#usage)
+    - [Node.js Server](#nodejs-server)
+    - [REST-Service](#rest-service)
+    - [APEX](#apex)
 
   - [License](#license)
 
@@ -137,6 +140,7 @@ SSL Support:
 ### Installation Database
 
 #### Database ACL
+
 All notifications are sent through web service requests. Therefore a ACL is needed, so you are allowed to connect to this host. Here is a example script, configure it to reflect your environment...
 
 ```language-sql
@@ -175,6 +179,7 @@ END;
 ```
 
 #### Oracle SSL Wallet
+
 If you configured the Node Notification Server with SSL/HTTPS support, a Oracle SSL Wallet is needed by the database to communicate with the REST-Interface for sending notifications.
 
 To manually create a wallet, either use Oracle Wallet Manager or create the wallet with openssl utils like:
@@ -186,32 +191,63 @@ openssl pkcs12 -export -in cert.pem -out ewallet.p12 -nokeys
 ```
 
 - Place the wallet file on your database server
-- Change the wallet path and password in the [package specification](https://github.com/Dani3lSun/apex-websocket-notify-bundle/blob/master/plsql/ws_notify_api.pks) under "Websocket REST Call defaults / security defaults"
+- Change the wallet path and password in [package specification](https://github.com/Dani3lSun/apex-websocket-notify-bundle/blob/master/plsql/ws_notify_api.pks) under "Websocket REST Call defaults / security defaults"
   - **g_ssl_wallet_path:** Path of Oracle SSL wallet
   - **g_ssl_wallet_pwd:** Password of Oracle SSL wallet
 
 
-#### Compile the PL/SQL package
+#### Compile PL/SQL package
+
 - Change the global variables in the [package specification](https://github.com/Dani3lSun/apex-websocket-notify-bundle/blob/master/plsql/ws_notify_api.pks) under "Websocket REST Call defaults" to reflect your environment
   - **g_ws_rest_host:** Host/IP of Node Server
   - **g_ws_rest_port:** Port of Node Server
   - **g_ws_rest_proto:** Protocol of Node Server (http or https) - if https, then "g_ssl_wallet_path" and "g_ssl_wallet_pwd" are required
   - **g_ws_basic_auth_user:** HTTP Basic Auth username of Node Server (REST-Interface)
   - **g_ws_basic_auth_pwd:** HTTP Basic Auth password of Node Server (REST-Interface)
-- Connect to your database and compile the package spec and body (ws_notify_api.pks & ws_notify_api.pkb) from [../plsql](https://github.com/Dani3lSun/apex-websocket-notify-bundle/tree/master/plsql)
+- Connect to your database and compile the package spec and body (ws_notify_api.pks & ws_notify_api.pkb) from [../plsql](https://github.com/Dani3lSun/apex-websocket-notify-bundle/tree/master/plsql) folder
 
 
 ### Installation APEX
 
 #### Install Plugins
 
+The APEX part contains 3 plugins, you can find it in [../apex/plugins](https://github.com/Dani3lSun/apex-websocket-notify-bundle/tree/master/apex/plugins) folder.
+Just import these 3 files to your application and you are ready to go.
 
+- **Init Websocket Notify Connection** - dynamic_action_plugin_de_danielh_initwsnotifyconnection.sql
+- **Send Websocket Notify** - dynamic_action_plugin_de_danielh_sendwsnotify.sql
+- **Show Websocket Notify** - dynamic_action_plugin_de_danielh_showwsnotify.sql
 
-
+For a detailed description of the plugins, read further under "Usage Section" or import the demo app sql file to you workspace.
 
 
 ## Usage
 
+### Node.js Server
+
+As mentioned in the installation steps, the node notification server component consists of 3 areas:
+
+- **REST-Interface**
+
+Sending messages and notifications to users which are connected over the websocket interface.
+
+- **Websocket-Interface**
+
+Connecting and authenticating users against the node server and still more to receive live messages on client browser from server part.
+
+- **Helper pages**
+
+Helper pages to get informations about services, status of server and a test client page to test some websocket interactions.
+
+  - **Overview Services:** http://[host-ip-of-server]:8080
+  - **Server Status Page:** http://[host-ip-of-server]:8080/status
+  - **Websocket Test Client:** http://[host-ip-of-server]:8080/testclient
+
+
+
+### REST-Service
+
+### APEX
 
 ## License
 This software is under **MIT License**.
