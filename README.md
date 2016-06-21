@@ -234,6 +234,10 @@ Sending messages and notifications to users which are connected over the websock
 - **Websocket-Interface**
 
 Connecting and authenticating users against the node server and still more to receive live messages on client browser from server part.
+There exists 2 rooms/namespaces which users can subscribe to:
+
+  - **private** - For single user messages to all instances of one user (e.g. one user is logged in with 3 browsers)
+  - **public** - For single user messages to all instances of one user *AND* broadcasting messages to all connected clients
 
 - **Helper pages**
 
@@ -243,9 +247,33 @@ Helper pages to get informations about services, status of server and a test cli
   - **Server Status Page:** http://[host-ip-of-server]:8080/status
   - **Websocket Test Client:** http://[host-ip-of-server]:8080/testclient
 
-
+General settings of the node server like IP, port, authentication, SSL support and active websocket rooms can be configured with [../node/node-notify-server/prefs.json](https://github.com/Dani3lSun/apex-websocket-notify-bundle/blob/master/node/node-notify-server/prefs.json) file as mentioned above.
 
 ### REST-Service
+
+The REST-Service is designed to send messages to connected websocket users. Base-URL scheme with looks like this:
+
+```
+Type: GET
+http://[host-ip-of-server]:[port]/notifyuser
+```
+
+- **URL-Parameter**
+  - userid (required) - User-ID of connected user, **in APEX APP_USER is used**
+  - room (required) - Websocket room - valid values: private,public
+  - type (required) - Notification type - valid values: info,success,warn,error
+  - optparam (optional) - Optional Parameter string to send any kind of information tp the websocket client
+
+- **HTTP Header-Variables**
+  - notify-title (required) - Title of notification
+  - notify-message (required) - Message content of notification
+
+A demo call using curl could look like this:
+
+```
+curl -H "notify-title: Test Title Text" -H "notify-message: Test Message Text" "http://[host-ip-of-server]:[port]/notifyuser?userid=daniel&room=private&type=info&optparam=myoptionalinfo123"
+```
+
 
 ### APEX
 
