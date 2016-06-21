@@ -47,6 +47,8 @@ https://apex.danielh.de/ords/f?p=WSNOTIFY
 And of course you find a APEX export (demo_app.sql) of it in [../apex/](https://github.com/Dani3lSun/apex-websocket-notify-bundle/tree/master/apex) folder. To use it just import the app and then go through the installation steps below.
 Under Shared Components --> Edit Application Definition --> Substitutions Strings, set "G_WS_SERVER_HOST" to the hostname or ip address and "G_WS_SERVER_PORT" to the port of your node notification server.
 
+The demo includes all plugins and shows the most common preferences and possibilities.
+
 
 ## Changelog
 
@@ -185,10 +187,18 @@ openssl pkcs12 -export -in cert.pem -out ewallet.p12 -nokeys
 
 - Place the wallet file on your database server
 - Change the wallet path and password in the [package specification](https://github.com/Dani3lSun/apex-websocket-notify-bundle/blob/master/plsql/ws_notify_api.pks) under "Websocket REST Call defaults / security defaults"
+  - **g_ssl_wallet_path:** Path of Oracle SSL wallet
+  - **g_ssl_wallet_pwd:** Password of Oracle SSL wallet
 
 
 #### Compile the PL/SQL package
-Connect to your database and compile the package spec and body (ws_notify_api.pks & ws_notify_api.pkb) from [../plsql](https://github.com/Dani3lSun/apex-websocket-notify-bundle/tree/master/plsql)
+- Change the global variables in the [package specification](https://github.com/Dani3lSun/apex-websocket-notify-bundle/blob/master/plsql/ws_notify_api.pks) under "Websocket REST Call defaults" to reflect your environment
+  - **g_ws_rest_host:** Host/IP of Node Server
+  - **g_ws_rest_port:** Port of Node Server
+  - **g_ws_rest_proto:** Protocol of Node Server (http or https) - if https, then "g_ssl_wallet_path" and "g_ssl_wallet_pwd" are required
+  - **g_ws_basic_auth_user:** HTTP Basic Auth username of Node Server (REST-Interface)
+  - **g_ws_basic_auth_pwd:** HTTP Basic Auth password of Node Server (REST-Interface)
+- Connect to your database and compile the package spec and body (ws_notify_api.pks & ws_notify_api.pkb) from [../plsql](https://github.com/Dani3lSun/apex-websocket-notify-bundle/tree/master/plsql)
 
 
 ### Installation APEX
