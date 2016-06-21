@@ -18,7 +18,6 @@
     - [Node.js Server](#nodejs-server)
     - [REST-Service](#rest-service)
     - [APEX](#apex)
-
   - [License](#license)
 
 
@@ -236,8 +235,8 @@ Sending messages and notifications to users which are connected to the websocket
 Connecting and authenticating users against the node server and still more to receive live messages on client browser from server part.
 There exists 2 rooms/namespaces which users can subscribe to:
 
-    - **private** - For single user messages to all instances of one user (e.g. one user is logged in with 3 browsers)
-    - **public** - For single user messages to all instances of one user *AND* broadcasting messages to all connected clients
+  - **private** - For single user messages to all instances of one user (e.g. one user is logged in with 3 browsers)
+  - **public** - For single user messages to all instances of one user *AND* broadcasting messages to all connected clients
 
 - **Helper pages**
 
