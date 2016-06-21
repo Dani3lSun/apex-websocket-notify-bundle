@@ -2,6 +2,7 @@
 
 - [APEX Websocket Notification Bundle](#apex-websocket-notification-bundle)
   - [Demo](#demo)
+  - [Preview](#preview)
   - [Changelog](#changelog)
   - [Installation and Configuration](#installation-and-configuration)
     - [Installation Node.js Server](#installation-nodejs-server)
@@ -50,6 +51,10 @@ And of course you find a APEX export (demo_app.sql) of it in [../apex/](https://
 Under Shared Components --> Edit Application Definition --> Substitutions Strings, set "G_WS_SERVER_HOST" to the hostname or ip address and "G_WS_SERVER_PORT" to the port of your node notification server.
 
 The demo includes all plugins and shows the most common preferences and possibilities.
+
+
+## Preview
+![](https://raw.githubusercontent.com/Dani3lSun/apex-websocket-notify-bundle/master/docs/preview.gif?token=AAqqPjnhLIL3-jRZcUAldqlss6L0TROsks5XcuV7wA%3D%3D)
 
 
 ## Changelog
