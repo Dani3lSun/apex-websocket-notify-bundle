@@ -218,7 +218,7 @@ Just import these 3 files to your application and you are ready to go.
 - **Send Websocket Notify** - dynamic_action_plugin_de_danielh_sendwsnotify.sql
 - **Show Websocket Notify** - dynamic_action_plugin_de_danielh_showwsnotify.sql
 
-For a detailed description of the plugins, read further under "Usage Section" or import the demo app sql file to you workspace.
+For a detailed description of the plugins, read further under "Usage Section" or import the demo app sql file to your workspace.
 
 
 ## Usage
@@ -229,15 +229,15 @@ As mentioned in the installation steps, the node notification server component c
 
 - **REST-Interface**
 
-Sending messages and notifications to users which are connected over the websocket interface.
+Sending messages and notifications to users which are connected to the websocket interface.
 
 - **Websocket-Interface**
 
 Connecting and authenticating users against the node server and still more to receive live messages on client browser from server part.
 There exists 2 rooms/namespaces which users can subscribe to:
 
-  - **private** - For single user messages to all instances of one user (e.g. one user is logged in with 3 browsers)
-  - **public** - For single user messages to all instances of one user *AND* broadcasting messages to all connected clients
+    - **private** - For single user messages to all instances of one user (e.g. one user is logged in with 3 browsers)
+    - **public** - For single user messages to all instances of one user *AND* broadcasting messages to all connected clients
 
 - **Helper pages**
 
@@ -251,7 +251,7 @@ General settings of the node server like IP, port, authentication, SSL support a
 
 ### REST-Service
 
-The REST-Service is designed to send messages to connected websocket users. Base-URL scheme with looks like this:
+The REST-Service is designed to send messages to connected websocket users. Base-URL scheme looks like this:
 
 ```
 Type: GET
@@ -259,14 +259,14 @@ http://[host-ip-of-server]:[port]/notifyuser
 ```
 
 - **URL-Parameter**
-  - userid (required) - User-ID of connected user, **in APEX APP_USER is used**
-  - room (required) - Websocket room - valid values: private,public
-  - type (required) - Notification type - valid values: info,success,warn,error
-  - optparam (optional) - Optional Parameter string to send any kind of information tp the websocket client
+  - **userid** (required) - User-ID of connected user, *in APEX APP_USER is used*
+  - **room** (required) - Websocket room - *valid values: private,public*
+  - **type** (required) - Notification type - *valid values: info,success,warn,error*
+  - **optparam** (optional) - Optional Parameter string to send any kind of information to the websocket client
 
 - **HTTP Header-Variables**
-  - notify-title (required) - Title of notification
-  - notify-message (required) - Message content of notification
+  - **notify-title** (required) - Title of notification
+  - **notify-message** (required) - Message content of notification
 
 A demo call using curl could look like this:
 
