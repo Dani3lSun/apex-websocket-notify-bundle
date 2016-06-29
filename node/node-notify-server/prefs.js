@@ -31,9 +31,11 @@ module.exports = {
         } else if (pType == 'socket') {
             var lPrivate = jsonObject.socket.private;
             var lPublic = jsonObject.socket.public;
+            var lAuthToken = jsonObject.socket.authToken;
             return {
                 private: lPrivate,
-                public: lPublic
+                public: lPublic,
+                authToken: lAuthToken
             };
         }
     },

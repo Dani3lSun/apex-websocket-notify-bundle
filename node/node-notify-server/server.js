@@ -15,6 +15,7 @@ var sslKeyPath = serverPrefs.sslKeyPath;
 var sslCertPath = serverPrefs.sslCertPath;
 var isPrivate = socketPrefs.private;
 var isPublic = socketPrefs.public;
+var socketAuthToken = socketPrefs.authToken;
 var server;
 // Create HTTP Server
 // SSL HTTP
@@ -172,28 +173,50 @@ var socketio = {
         if (isPrivate) {
             ioPrivate.on('connection', function(socket) {
                 var userid = socket.handshake.query.userid;
-                socket.userid = userid;
-                // logging
-                prefs.doLog(userid + ' connected to Private');
-                // save session
-                localstore.saveUserSession(userid, 'private', socket.id, function() {
+                var authToken = socket.handshake.query.authtoken;
+                // check authToken
+                if (authToken == socketAuthToken) {
+                    // token success
+                    socket.userid = userid;
                     // logging
-                    prefs.doLog(userid + ' private session saved in DB');
-                });
+                    prefs.doLog(userid + ' connected to Private');
+                    // save session
+                    localstore.saveUserSession(userid, 'private', socket.id, function() {
+                        // logging
+                        prefs.doLog(userid + ' private session saved in DB');
+                    });
+                } else {
+                    // token error
+                    // logging
+                    prefs.doLog(userid + ' with wrong authToken: ' + authToken);
+                    // disconnect
+                    socket.disconnect();
+                }
             });
         }
         // Public connect
         if (isPublic) {
             ioPublic.on('connection', function(socket) {
                 var userid = socket.handshake.query.userid;
-                socket.userid = userid;
-                // logging
-                prefs.doLog(userid + ' connected to Public');
-                // save session
-                localstore.saveUserSession(userid, 'public', socket.id, function() {
+                var authToken = socket.handshake.query.authtoken;
+                // check authToken
+                if (authToken == socketAuthToken) {
+                    // token success
+                    socket.userid = userid;
                     // logging
-                    prefs.doLog(userid + ' public session saved in DB');
-                });
+                    prefs.doLog(userid + ' connected to Public');
+                    // save session
+                    localstore.saveUserSession(userid, 'public', socket.id, function() {
+                        // logging
+                        prefs.doLog(userid + ' public session saved in DB');
+                    });
+                } else {
+                    // token error
+                    // logging
+                    prefs.doLog(userid + ' with wrong authToken: ' + authToken);
+                    // disconnect
+                    socket.disconnect();
+                }
             });
         }
     },

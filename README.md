@@ -18,6 +18,7 @@
   - [Usage](#usage)
     - [Node.js Server](#nodejs-server)
     - [REST-Service](#rest-service)
+    - [PL/SQL API](#plsql-api)
     - [APEX](#apex)
   - [License](#license)
 
@@ -47,8 +48,12 @@ Developers don´t need to be experts in Javascript or JQuery and stuff like that
 A demo application is available under
 https://apex.danielh.de/ords/f?p=WSNOTIFY
 
-And of course you find a APEX export (demo_app.sql) of it in [../apex/](https://github.com/Dani3lSun/apex-websocket-notify-bundle/tree/master/apex) folder. To use it just import the app and then go through the installation steps below.
-Under Shared Components --> Edit Application Definition --> Substitutions Strings, set "G_WS_SERVER_HOST" to the hostname or ip address and "G_WS_SERVER_PORT" to the port of your node notification server.
+And of course you find a APEX export (**demo_app.sql**) of it in [../apex/](https://github.com/Dani3lSun/apex-websocket-notify-bundle/tree/master/apex) folder. To use it just import the app and then go through the installation steps below.
+Under Shared Components --> Edit Application Definition --> Substitutions Strings, set
+
+- **G_WS_SERVER_HOST** to the hostname or ip address of your node notification server
+- **G_WS_SERVER_PORT** to the port of your node notification server
+- **G_WS_SERVER_AUTHTOKEN** to your secure and random authToken of your node notification server (read further for more informations)
 
 The demo includes all plugins and shows the most common preferences and possibilities.
 
@@ -129,7 +134,8 @@ You can change the default behavior of the server by editing the JSON config fil
     },
     "socket": {
         "private": true, // activate private websocket room/namespace of server
-        "public": true // activate public websocket room/namespace of server
+        "public": true, // activate public websocket room/namespace of server
+        "authToken":"please-change-me" // authentication token, client should have the same to connect with websocket, please change it to some random string
     }
 }
 ```
@@ -272,16 +278,20 @@ http://[host-ip-of-server]:[port]/notifyuser
   - **notify-title** (required) - Title of notification
   - **notify-message** (required) - Message content of notification
 
-A demo call using curl could look like this:
+A demo call using curl looks like this:
 
 ```
 curl -H "notify-title: Test Title Text" -H "notify-message: Test Message Text" "http://[host-ip-of-server]:[port]/notifyuser?userid=daniel&room=private&type=info&optparam=myoptionalinfo123"
 ```
 
+### PL/SQL API
+
+
 
 ### APEX
 
-## License
-This software is under **MIT License**.
 
----
+
+## License
+
+This software is under **MIT License**.

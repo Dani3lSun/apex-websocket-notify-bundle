@@ -14,7 +14,8 @@
 	<script type="text/javascript">
 		// connect info
 		var userid = 'daniel';
-		var connectString = 'userid=' + userid;
+		var authToken = 'please-change-me';
+		var connectString = 'userid=' + userid + '&authtoken=' + authToken;
 		console.log(connectString);
 		// connect to sockets
 		var privateSocket = io.connect('/private', {
@@ -39,6 +40,14 @@
 			console.log('message', data.message);
 			console.log('time', data.time);
 			console.log('optparam', data.optparam);
+		});
+		// socket disconnect events
+		// socket message events
+		privateSocket.on('disconnect', function() {
+			console.log('private-socket disconnected');
+		});
+		publicSocket.on('disconnect', function() {
+			console.log('public-socket disconnected');
 		});
 	</script>
 
