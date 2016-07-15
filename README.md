@@ -367,6 +367,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_user_public_warn
@@ -378,6 +379,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_user_public_error
@@ -389,6 +391,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_all_public_info
@@ -399,6 +402,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_all_public_success
@@ -409,6 +413,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_all_public_warn
@@ -419,6 +424,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_all_public_error
