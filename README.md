@@ -40,7 +40,7 @@ This bundle includes all these features and simultaneously is designed to use al
 Developers don´t need to be experts in Javascript or JQuery and stuff like that (But as always, it´s not a bad skill!;) ). APEX Know-How and a good knowledge of using Dynamic Actions should be enough to implement this notification bundle in your applications...
 
 #### Infrastructure Diagram
-![](https://raw.githubusercontent.com/Dani3lSun/apex-websocket-notify-bundle/master/docs/infrastructure_diagram.png?token=AAqqPu2eOWOh4hVg9FtGYLt0LAFADUi4ks5XfXKUwA%3D%3D)
+![](https://github.com/Dani3lSun/apex-websocket-notify-bundle/blob/master/docs/infrastructure_diagram.png?raw=true)
 
 
 ## Demo
@@ -59,7 +59,7 @@ The demo includes all plugins and shows the most common preferences and possibil
 
 
 ## Preview
-![](https://raw.githubusercontent.com/Dani3lSun/apex-websocket-notify-bundle/master/docs/preview.gif?token=AAqqPmxSfI-DehOqq7EE75trnKEH6Ctkks5XfXK5wA%3D%3D)
+![](https://github.com/Dani3lSun/apex-websocket-notify-bundle/blob/master/docs/preview.gif?raw=true)
 
 
 ## Changelog
@@ -463,4 +463,4 @@ The PL/SQL API includes many procedures to send any kind of possible notificatio
 
 ## License
 
-This software is under **MIT License**.
+This software is under [**MIT License**](https://github.com/Dani3lSun/apex-websocket-notify-bundle/blob/master/LICENSE).
