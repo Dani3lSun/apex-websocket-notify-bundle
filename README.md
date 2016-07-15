@@ -270,8 +270,8 @@ http://[host-ip-of-server]:[port]/notifyuser
 
 - **URL-Parameter**
   - **userid** (required) - User-ID of connected user, *in APEX APP_USER is used*
-  - **room** (required) - Websocket room - *valid values: private,public*
-  - **type** (required) - Notification type - *valid values: info,success,warn,error*
+  - **room** (required) - Websocket room - *valid values: private, public*
+  - **type** (required) - Notification type - *valid values: info, success, warn, error*
   - **optparam** (optional) - Optional Parameter string to send any kind of information to the websocket client
 
 - **HTTP Header-Variables**
@@ -286,7 +286,149 @@ curl -H "notify-title: Test Title Text" -H "notify-message: Test Message Text" "
 
 ### PL/SQL API
 
+The PL/SQL API includes many procedures to send any kind of possible notifications over the REST-Interface.
 
+Here is a list of all procedures with all parameters.
+
+**Procedure:** do_rest_notify_user
+
+**Purpose:** Send Websocket Notifications over REST to connected users (General sending procedure with all parameters)
+
+**Parameter:**
+- **i_userid** (required)
+- **i_room** (required) - ("private" or "public")
+- **i_type** (required) - (info, success, warn, error)
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_user_private_info
+
+**Purpose:** Send Websocket Notification to User / Room: Private / Type: Info
+
+**Parameter:**
+- **i_userid** (required)
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_user_private_success
+
+**Purpose:** Send Websocket Notification to User / Room: Private / Type: Success
+
+**Parameter:**
+- **i_userid** (required)
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_user_private_warn
+
+**Purpose:** Send Websocket Notification to User / Room: Private / Type: Warn
+
+**Parameter:**
+- **i_userid** (required)
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_user_private_error
+
+**Purpose:** Send Websocket Notification to User / Room: Private / Type: Error
+
+**Parameter:**
+- **i_userid** (required)
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_user_public_info
+
+**Purpose:** Send Websocket Notification to User / Room: Public / Type: Info
+
+**Parameter:**
+- **i_userid** (required)
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_user_public_success
+
+**Purpose:** Send Websocket Notification to User / Room: Public / Type: Success
+
+**Parameter:**
+- **i_userid** (required)
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_user_public_warn
+
+**Purpose:** Send Websocket Notification to User / Room: Public / Type: Warn
+
+**Parameter:**
+- **i_userid** (required)
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_user_public_error
+
+**Purpose:** Send Websocket Notification to User / Room: Public / Type: Error
+
+**Parameter:**
+- **i_userid** (required)
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_all_public_info
+
+**Purpose:** Send Websocket Notification to all Users / Room: Public / Type: Info
+
+**Parameter:**
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_all_public_success
+
+**Purpose:** Send Websocket Notification to all Users / Room: Public / Type: Success
+
+**Parameter:**
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_all_public_warn
+
+**Purpose:** Send Websocket Notification to all Users / Room: Public / Type: Warn
+
+**Parameter:**
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
+----
+
+**Procedure:** do_notify_all_public_error
+
+**Purpose:** Send Websocket Notification to all Users / Room: Public / Type: Error
+
+**Parameter:**
+- **i_title** (required)
+- **i_message** (required)
+- **i_optparam** (optional) - (Optional Parameter String)
 
 ### APEX
 
