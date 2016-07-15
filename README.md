@@ -209,7 +209,7 @@ openssl pkcs12 -export -in cert.pem -out ewallet.p12 -nokeys
 #### Compile PL/SQL package
 
 - Change the global variables in the [package specification](https://github.com/Dani3lSun/apex-websocket-notify-bundle/blob/master/plsql/ws_notify_api.pks) under "Websocket REST Call defaults" to reflect your environment
-  - **g_ws_rest_host:** Host/IP of Node Server
+  - **g_ws_rest_host:** Hostname or IP of Node Server
   - **g_ws_rest_port:** Port of Node Server
   - **g_ws_rest_proto:** Protocol of Node Server (http or https) - if https, then "g_ssl_wallet_path" and "g_ssl_wallet_pwd" are required
   - **g_ws_basic_auth_user:** HTTP Basic Auth username of Node Server (REST-Interface)
@@ -286,9 +286,22 @@ curl -H "notify-title: Test Title Text" -H "notify-message: Test Message Text" "
 
 ### PL/SQL API
 
-The PL/SQL API includes many procedures to send any kind of possible notifications over the REST-Interface.
+The PL/SQL API includes many procedures to send any kind of possible notifications over the REST-Interface. It can be used to send notifications to users via PL/SQL or inside of APEX. All web service requests are based on APEX package APEX_WEB_SERVICE.
 
-Here is a list of all procedures with all parameters.
+**List of global package variables:**
+
+- **g_ws_rest_host** - Node Notification Server Hostname or IP
+- **g_ws_rest_port** - Node Notification Server Port
+- **g_ws_rest_path** - Node Notification Server REST-Service Base Path
+- **g_ws_rest_proto** - Node Notification Server Protocol (http or https)
+- **g_ws_rest_base_url** - Combines Protocol, Host, Port and Path
+- **g_ws_basic_auth_user** - HTTP Basic Auth username of Node Server (REST-Interface)
+- **g_ws_basic_auth_pwd** - HTTP Basic Auth password of Node Server (REST-Interface)
+- **g_ssl_wallet_path** - If https, path to oracle wallet
+- **g_ssl_wallet_pwd** - If https, password of oracle wallet
+
+
+**List of all procedures with all parameters:**
 
 **Procedure:** do_rest_notify_user
 
@@ -301,6 +314,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_user_private_info
@@ -312,6 +326,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_user_private_success
@@ -323,6 +338,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_user_private_warn
@@ -334,6 +350,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_user_private_error
@@ -345,6 +362,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_user_public_info
@@ -356,6 +374,7 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
 ----
 
 **Procedure:** do_notify_user_public_success
@@ -435,6 +454,8 @@ Here is a list of all procedures with all parameters.
 - **i_title** (required)
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
+
+----
 
 ### APEX
 
