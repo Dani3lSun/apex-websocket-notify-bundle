@@ -69,7 +69,7 @@ The demo includes all plugins and shows the most common preferences and possibil
 
 ## Changelog
 
-#### 1.0.0 - Initial Release
+#### [1.0.0 - Initial Release](https://github.com/Dani3lSun/apex-websocket-notify-bundle/releases/tag/v1.0.0)
 
 
 ## Installation and Configuration
