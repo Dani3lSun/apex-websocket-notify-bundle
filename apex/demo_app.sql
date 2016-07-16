@@ -13,7 +13,7 @@ whenever sqlerror exit sql.sqlcode rollback
 begin
 wwv_flow_api.import_begin (
  p_version_yyyy_mm_dd=>'2013.01.01'
-,p_release=>'5.0.3.00.03'
+,p_release=>'5.0.4.00.12'
 ,p_default_workspace_id=>2800606370918940
 ,p_default_application_id=>850
 ,p_default_owner=>'SAMPLE_APPS'
@@ -27,11 +27,11 @@ prompt APPLICATION 850 - Notify Websockets
 -- Application Export:
 --   Application:     850
 --   Name:            Notify Websockets
---   Date and Time:   21:16 Monday July 4, 2016
+--   Date and Time:   12:58 Saturday July 16, 2016
 --   Exported By:     DHOCHLEITNER
 --   Flashback:       0
 --   Export Type:     Application Export
---   Version:         5.0.3.00.03
+--   Version:         5.0.4.00.12
 --   Instance ID:     108804044653963
 --
 
@@ -114,7 +114,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_string_03=>'G_WS_SERVER_AUTHTOKEN'
 ,p_substitution_value_03=>'please-change-me'
 ,p_last_updated_by=>'DHOCHLEITNER'
-,p_last_upd_yyyymmddhh24miss=>'20160704211559'
+,p_last_upd_yyyymmddhh24miss=>'20160716125823'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>2
 ,p_ui_type_name => null
@@ -136,6 +136,14 @@ wwv_flow_api.create_list_item(
 ,p_list_item_icon=>'fa-paper-plane'
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'1'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(5692949988587372)
+,p_list_item_display_sequence=>20
+,p_list_item_link_text=>'Show on Github'
+,p_list_item_link_target=>'javascript:var x=window.open(''https://github.com/Dani3lSun/apex-websocket-notify-bundle'',''_blank'');'
+,p_list_item_icon=>'fa-github fa-2x'
+,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_api.create_list(
  p_id=>wwv_flow_api.id(3325179013327700)
@@ -7520,11 +7528,6 @@ null;
 end;
 /
 prompt --application/shared_components/globalization/language
-begin
-null;
-end;
-/
-prompt --application/shared_components/globalization/translations
 begin
 null;
 end;
