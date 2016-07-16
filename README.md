@@ -460,8 +460,9 @@ The PL/SQL API consists of one package **ws_notify_api** and includes many proce
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
 
+----
 
-##### A demo call could look like this:
+**A demo call could look like this:**
 
 ```language-sql
 BEGIN
