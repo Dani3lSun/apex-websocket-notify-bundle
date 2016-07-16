@@ -461,7 +461,7 @@ The PL/SQL API consists of one package **ws_notify_api** and includes many proce
 - **i_optparam** (optional) - (Optional Parameter String)
 
 
-A procedure call could look like this:
+##### A demo call could look like this:
 
 ```language-sql
 BEGIN
@@ -483,7 +483,7 @@ As already mentioned above, the APEX part contains 3 plugins to cover all functi
 
 - **Plugin File:** dynamic_action_plugin_de_danielh_initwsnotifyconnection.sql
 
-- **Purpose:** Initialize a connection to the websocket server, for general usage over all pages of your APEX application this plugin should located on Global Page 0 (Zero)
+- **Purpose:** Initialize a connection to the websocket server, for general usage over all pages of your APEX application this plugin should be located on Global Page 0 (Zero)
 
 - **Plugin Attributes:**
   - **Use SSL** - Choose if the connection to the websocket server is secure (HTTPS) or plain (HTTP)
