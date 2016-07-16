@@ -4,6 +4,7 @@
   "description": "Websocket nofification services with GET interface",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Daniel Hochleitner",
