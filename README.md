@@ -505,6 +505,7 @@ As already mentioned above, the APEX part contains 3 plugins to cover all functi
   - **Receive Private Message** - Receiving an incoming private message
   - **Receive Public Message** - Receiving an incoming public message
 
+----
 
 #### Send Websocket Notify
 
@@ -527,6 +528,7 @@ As already mentioned above, the APEX part contains 3 plugins to cover all functi
   - **Send Notification error** - Error sending a notification
   - **Send Notification missing values** - Missing required parameters for sending a notification
 
+----
 
 #### Show Websocket Notify
 
