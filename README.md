@@ -466,12 +466,12 @@ The PL/SQL API consists of one package **ws_notify_api** and includes many proce
 
 ```language-sql
 BEGIN
-  ws_notify_api.do_rest_notify_user(i_userid   => 'USER1',
+  ws_notify_api.do_rest_notify_user(i_userid   => 'daniel',
                                     i_room     => 'private',
                                     i_type     => 'info',
                                     i_title    => 'My test title',
                                     i_message  => 'My test message content...',
-                                    i_optparam => NULL);
+                                    i_optparam => 'myoptionalinfo123');
 END;
 ```
 
