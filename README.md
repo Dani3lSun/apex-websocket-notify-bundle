@@ -19,7 +19,12 @@
     - [Node.js Server](#nodejs-server)
     - [REST-Service](#rest-service)
     - [PL/SQL API](#plsql-api)
+      - [List of global package variables](#list-of-global-package-variables)
+      - [List of all procedures with all parameters](#list-of-all-procedures-with-all-parameters)
     - [APEX](#apex)
+      - [Init Websocket Notify Connection](#init-websocket-notify-connection)
+      - [Send Websocket Notify](#send-websocket-notify)
+      - [Show Websocket Notify](#show-websocket-notify)
   - [License](#license)
 
 
@@ -93,7 +98,7 @@ npm is the package manager for Node applications. npm is used to install all req
 
 #### Install Notification Package
 
-- Copy the complete folder [../node/node-notify-server](https://github.com/Dani3lSun/https://github.com/Dani3lSun/apex-websocket-notify-bundle/tree/master/node/node-notify-server) to your server
+- Copy the complete folder [../node/node-notify-server](https://github.com/Dani3lSun/apex-websocket-notify-bundle/tree/master/node/node-notify-server) to your server
 - change to this directory via command line:
 ```
 cd /path/to/node-notify-server
@@ -228,7 +233,7 @@ Just import these 3 files to your application and you are ready to go.
 - **Send Websocket Notify** - dynamic_action_plugin_de_danielh_sendwsnotify.sql
 - **Show Websocket Notify** - dynamic_action_plugin_de_danielh_showwsnotify.sql
 
-For a detailed description of the plugins, read further under "Usage Section" or import the demo app sql file to your workspace.
+For a detailed description of the plugins, read further under **"Usage Section"** or import the demo app sql file to your workspace.
 
 
 ## Usage
@@ -286,9 +291,9 @@ curl -H "notify-title: Test Title Text" -H "notify-message: Test Message Text" "
 
 ### PL/SQL API
 
-The PL/SQL API includes many procedures to send any kind of possible notifications over the REST-Interface. It can be used to send notifications to users via PL/SQL or inside of APEX. All web service requests are based on APEX package APEX_WEB_SERVICE.
+The PL/SQL API consists of one package **ws_notify_api** and includes many procedures to send any kind of possible notifications over the REST-Interface. It can be used to send notifications to users via PL/SQL or inside of APEX. All web service requests are based on APEX package APEX_WEB_SERVICE.
 
-**List of global package variables:**
+#### List of global package variables
 
 - **g_ws_rest_host** - Node Notification Server Hostname or IP
 - **g_ws_rest_port** - Node Notification Server Port
@@ -301,7 +306,7 @@ The PL/SQL API includes many procedures to send any kind of possible notificatio
 - **g_ssl_wallet_pwd** - If https, password of oracle wallet
 
 
-**List of all procedures with all parameters:**
+#### List of all procedures with all parameters
 
 **Procedure:** do_rest_notify_user
 
@@ -455,10 +460,90 @@ The PL/SQL API includes many procedures to send any kind of possible notificatio
 - **i_message** (required)
 - **i_optparam** (optional) - (Optional Parameter String)
 
-----
+
+A procedure call could look like this:
+
+```language-sql
+BEGIN
+  ws_notify_api.do_rest_notify_user(i_userid   => 'USER1',
+                                    i_room     => 'private',
+                                    i_type     => 'info',
+                                    i_title    => 'My test title',
+                                    i_message  => 'My test message content...',
+                                    i_optparam => NULL);
+END;
+```
+
 
 ### APEX
 
+As already mentioned above, the APEX part contains 3 plugins to cover all functionalities from initialization of a websocket connection, sending notifications to other connected users to show incoming notifications. All 3 plugin files are located under [../apex/plugins](https://github.com/Dani3lSun/apex-websocket-notify-bundle/tree/master/apex/plugins) folder.
+
+#### Init Websocket Notify Connection
+
+- **Plugin File:** dynamic_action_plugin_de_danielh_initwsnotifyconnection.sql
+
+- **Purpose:** Initialize a connection to the websocket server, for general usage over all pages of your APEX application this plugin should located on Global Page 0 (Zero)
+
+- **Plugin Attributes:**
+  - **Use SSL** - Choose if the connection to the websocket server is secure (HTTPS) or plain (HTTP)
+  - **Server Hostname or IP** - The hostname or ip address of the websocket server
+  - **Server Port** - The port of the websocket server
+  - **Websocket Type or Room** - The type/room of the websocket server. There are 2 possible connections: private, public
+  - **Websocket Auth User-ID** - User-ID which connects / authenticates against the websocket server. Is used to identify a user. Default: APEX APP_USER
+  - **Websocket Auth-Token** - Auth-Token of the Node Notify Websocket Server. This is to increase security.
+  - **Logging** - Whether to log events in the console
+
+- **Plugin Events:**
+  - **Private Websocket Connection success** - Successfully connected to private room
+  - **Private Websocket Connection error** - Error connecting to private room
+  - **Private Websocket Disconnected** - Websocket connection is disconnected for private room
+  - **Public Websocket Connection success** - Successfully connected to public room
+  - **Public Websocket Connection error** - Error connecting to public room
+  - **Public Websocket Disconnected** - Websocket connection is disconnected for public room
+  - **Receive Private Message** - Receiving an incoming private message
+  - **Receive Public Message** - Receiving an incoming public message
+
+
+#### Send Websocket Notify
+
+- **Plugin File:** dynamic_action_plugin_de_danielh_sendwsnotify.sql
+
+- **Purpose:** Send websocket notifications to other connected users or to all connected users
+
+- **Plugin Attributes:**
+  - **To User (User-ID)** - Item which holds informations about the User-ID or Username of the user who get´s the notification
+  - **Websocket Room** - Item which holds informations about the websocket room - Valid values: "private" or "public"
+  - **Notification Type** - Item which holds informations about the type of the notification - Valid values: info, success, warn, error
+  - **Notification Title** - Item which holds informations about the title of the notification
+  - **Notification Message** - Item which holds informations about the message content of the notification
+  - **Optional Parameter** - Item which holds informations about a optional parameter - This could be any kind of string or number combination. This information can be processed on the client side
+  - **Show Wait Spinner** - Show / Hide wait spinner for AJAX call
+  - **Logging** - Whether to log events in the console
+
+- **Plugin Events:**
+  - **Send Notification success** - Sending a notification was successfull
+  - **Send Notification error** - Error sending a notification
+  - **Send Notification missing values** - Missing required parameters for sending a notification
+
+
+#### Show Websocket Notify
+
+- **Plugin File:** dynamic_action_plugin_de_danielh_showwsnotify.sql
+
+- **Purpose:** Show notifications for incoming websocket message events. Notifications UI based on [AlertifyJS](https://github.com/MohammadYounes/AlertifyJS)
+
+- **Plugin Attributes:**
+  - **Notification Icon CSS Class** - Icon CSS class for the incoming notification - Default: fa-bell
+  - **Notification Wait Time** - Time (in seconds) to wait before the notification is dismissed, a value of 0 means keep open till clicked.
+  - **Notification Position** - Position of the notification message on screen
+  - **Logging** - Whether to log events in the console
+
+All other parameters of an notification object (title, message, type (info, success, warn, error), etc.) are automatically fetched from the websocket message event.
+
+- **Plugin Events:**
+  - **Private Notification clicked** - Clicked on a private notification object
+  - **Public Notification clicked** - Clicked on a public notification object
 
 
 ## License
