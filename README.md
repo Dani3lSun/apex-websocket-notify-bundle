@@ -69,6 +69,8 @@ The demo includes all plugins and shows the most common preferences and possibil
 
 ## Changelog
 
+#### [1.1.0 - Updated Javascript Libs (socket.io 1.5.1 & alertyfy 1.8.0) / Send Websocket Notify Plugin enhancements](https://github.com/Dani3lSun/apex-websocket-notify-bundle/releases/tag/v1.1.0)
+
 #### [1.0.0 - Initial Release](https://github.com/Dani3lSun/apex-websocket-notify-bundle/releases/tag/v1.0.0)
 
 
@@ -514,19 +516,34 @@ As already mentioned above, the APEX part contains 3 plugins to cover all functi
 - **Purpose:** Send websocket notifications to other connected users or to all connected users
 
 - **Plugin Attributes:**
+  - **Source** - Source of all Notification relevant informations (Values: Items / SQL Query)
   - **To User (User-ID)** - Item which holds informations about the User-ID or Username of the user who get´s the notification
   - **Websocket Room** - Item which holds informations about the websocket room - Valid values: "private" or "public"
   - **Notification Type** - Item which holds informations about the type of the notification - Valid values: info, success, warn, error
   - **Notification Title** - Item which holds informations about the title of the notification
   - **Notification Message** - Item which holds informations about the message content of the notification
   - **Optional Parameter** - Item which holds informations about a optional parameter - This could be any kind of string or number combination. This information can be processed on the client side
+  - **SQL Query** - SQL Query which returns all relevant informations for sending a notification. The Query should only return one row!
   - **Show Wait Spinner** - Show / Hide wait spinner for AJAX call
+  - **Escape HTML** - Whether to escape special chars (HTML) or not
   - **Logging** - Whether to log events in the console
 
 - **Plugin Events:**
   - **Send Notification success** - Sending a notification was successfull
   - **Send Notification error** - Error sending a notification
   - **Send Notification missing values** - Missing required parameters for sending a notification
+
+  **Example SQL Source Query:**
+
+  ```language-sql
+  SELECT 'MYUSER' AS user_id,
+         'private' AS room, -- private, public
+         'info' AS notify_type, -- info, success, warn, error
+         'Test Title' AS title,
+         'My Test Message Content...' AS message,
+         '123:abc' AS optional_parameter
+    FROM dual
+  ```
 
 ----
 
