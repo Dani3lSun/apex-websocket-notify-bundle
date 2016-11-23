@@ -42,7 +42,7 @@ This bundle includes all these features and simultaneously is designed to use al
   - Send messages and notifications to users
   - Show different styled notifications on client side
 
-Developers don´t need to be experts in Javascript or JQuery and stuff like that (But as always, it´s not a bad skill!;) ). APEX Know-How and a good knowledge of using Dynamic Actions should be enough to implement this notification bundle in your applications...
+Developers don´t need to be experts in Javascript or JQuery and stuff like that (But as always, it´s not a bad skill!;) ). APEX & PL/SQL Know-How and a good knowledge of using Dynamic Actions should be enough to implement this notification bundle in your applications...
 
 #### Infrastructure Diagram
 ![](https://github.com/Dani3lSun/apex-websocket-notify-bundle/blob/master/docs/infrastructure_diagram.png?raw=true)
@@ -69,7 +69,7 @@ The demo includes all plugins and shows the most common preferences and possibil
 
 ## Changelog
 
-#### [1.1.0 - Updated Javascript Libs (socket.io 1.5.1 & alertify 1.8.0) / Send Websocket Notify Plugin enhancements](https://github.com/Dani3lSun/apex-websocket-notify-bundle/releases/tag/v1.1.0)
+#### [1.1.0 - Updated Javascript Libs (socket.io 1.5.1 & Alertify 1.8.0) / Send Websocket Notify Plugin enhancements](https://github.com/Dani3lSun/apex-websocket-notify-bundle/releases/tag/v1.1.0)
 
 #### [1.0.0 - Initial Release](https://github.com/Dani3lSun/apex-websocket-notify-bundle/releases/tag/v1.0.0)
 
