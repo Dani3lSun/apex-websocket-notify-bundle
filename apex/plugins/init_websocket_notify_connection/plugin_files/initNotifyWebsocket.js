@@ -1,6 +1,6 @@
 // Init Websocket Notify Connection
 // Author: Daniel Hochleitner
-// Version: 1.0
+// Version: 1.1
 
 // global namespace
 var initNotifyWebsocket = {
