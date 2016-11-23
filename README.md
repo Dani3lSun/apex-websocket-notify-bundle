@@ -69,7 +69,7 @@ The demo includes all plugins and shows the most common preferences and possibil
 
 ## Changelog
 
-#### [1.1.0 - Updated Javascript Libs (socket.io 1.5.1 & alertyfy 1.8.0) / Send Websocket Notify Plugin enhancements](https://github.com/Dani3lSun/apex-websocket-notify-bundle/releases/tag/v1.1.0)
+#### [1.1.0 - Updated Javascript Libs (socket.io 1.5.1 & alertify 1.8.0) / Send Websocket Notify Plugin enhancements](https://github.com/Dani3lSun/apex-websocket-notify-bundle/releases/tag/v1.1.0)
 
 #### [1.0.0 - Initial Release](https://github.com/Dani3lSun/apex-websocket-notify-bundle/releases/tag/v1.0.0)
 
