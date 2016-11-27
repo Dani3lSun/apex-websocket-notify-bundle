@@ -15,7 +15,7 @@ module.exports = {
     //
     // HTTP Error function
     //
-    doHttpError: function(errID, errMsg, res) {
+    throwHttpError: function(errID, errMsg, res) {
         res.writeHead(errID, {
             "Content-Type": "text/plain"
         });
@@ -57,7 +57,7 @@ module.exports = {
                     res.statusCode = 200;
                     return true;
                 } else {
-                    module.exports.doHttpError(403, 'Forbidden', res);
+                    module.exports.throwHttpError(403, 'Forbidden', res);
                     return false;
                 }
                 // not enabled
@@ -69,7 +69,7 @@ module.exports = {
     //
     // Get Notify User Info from GET call
     //
-    doGetNotifyInfo: function(req, res) {
+    getNotifyInfo: function(req, res) {
         // parse URL
         var parsedUrl = url.parse(req.url, true);
         // get JSON
@@ -92,11 +92,11 @@ module.exports = {
         // check enabled sockets
         if (lRoom === 'private') {
             if (!(isPrivate)) {
-                module.exports.doHttpError(404, 'Room private is not enabled', res);
+                module.exports.throwHttpError(404, 'Room private is not enabled', res);
             }
         } else if (lRoom === 'public') {
             if (!(isPublic)) {
-                module.exports.doHttpError(404, 'Room public is not enabled', res);
+                module.exports.throwHttpError(404, 'Room public is not enabled', res);
             }
         }
         // check parameter
@@ -115,23 +115,23 @@ module.exports = {
                         optparam: lOptParam
                     };
                 } else {
-                    module.exports.doHttpError(404, 'Check valid values: type', res);
+                    module.exports.throwHttpError(404, 'Check valid values: type', res);
                 }
             } else {
-                module.exports.doHttpError(404, 'Check valid values: room', res);
+                module.exports.throwHttpError(404, 'Check valid values: room', res);
             }
         } else {
-            module.exports.doHttpError(404, 'Check Parameter', res);
+            module.exports.throwHttpError(404, 'Check Parameter', res);
         }
     },
     //
     // Server index.html file (Overview)
     //
-    doServeIndex: function(res) {
+    serveIndex: function(res) {
         fs.readFile('./index.html', function(err, html) {
             // HTTP 404 when error
             if (err) {
-                module.exports.doHttpError(404, 'Not Found', res);
+                module.exports.throwHttpError(404, 'Not Found', res);
                 // write index.html
             } else {
                 res.write(html);
@@ -142,11 +142,11 @@ module.exports = {
     //
     // Server client.html file (testclient)
     //
-    doServeClient: function(res) {
+    serveClient: function(res) {
         fs.readFile('./client.html', function(err, html) {
             // HTTP 404 when error
             if (err) {
-                module.exports.doHttpError(404, 'Not Found', res);
+                module.exports.throwHttpError(404, 'Not Found', res);
                 // write index.html
             } else {
                 res.write(html);
@@ -157,7 +157,7 @@ module.exports = {
     //
     // Delete user session older than 3 hours
     //
-    doDeleteOldSessions: function() {
+    deleteOldSessions: function() {
         setInterval(function() {
             localstore.deleteOldSessions(function(dbres, err) {
                 if (dbres) {

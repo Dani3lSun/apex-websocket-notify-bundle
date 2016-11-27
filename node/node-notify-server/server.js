@@ -47,13 +47,13 @@ if ((sslKeyPath) && (sslCertPath)) {
         if (srvHelper.doBasicAuth(req, res)) {
             // index html with overview of services
             if (path == '/' && fullPath.length == path.length) {
-                srvHelper.doServeIndex(res);
+                srvHelper.serveIndex(res);
                 // Test client
             } else if (path == '/testclient') {
-                srvHelper.doServeClient(res);
+                srvHelper.serveClient(res);
                 // Path notifyuser get interface
             } else if (path == '/notifyuser') {
-                lItems = srvHelper.doGetNotifyInfo(req, res);
+                lItems = srvHelper.getNotifyInfo(req, res);
                 if (lItems) {
                     lUserId = lItems.userid;
                     lRoom = lItems.room;
@@ -81,7 +81,7 @@ if ((sslKeyPath) && (sslCertPath)) {
                 });
                 // path not found
             } else {
-                srvHelper.doHttpError(404, 'Not Found', res);
+                srvHelper.throwHttpError(404, 'Not Found', res);
             }
         }
     });
@@ -110,13 +110,13 @@ if ((sslKeyPath) && (sslCertPath)) {
         if (srvHelper.doBasicAuth(req, res)) {
             // index html with overview of services
             if (path == '/' && fullPath.length == path.length) {
-                srvHelper.doServeIndex(res);
+                srvHelper.serveIndex(res);
                 // Test client
             } else if (path == '/testclient') {
-                srvHelper.doServeClient(res);
+                srvHelper.serveClient(res);
                 // Path notifyuser get interface
             } else if (path == '/notifyuser') {
-                lItems = srvHelper.doGetNotifyInfo(req, res);
+                lItems = srvHelper.getNotifyInfo(req, res);
                 if (lItems) {
                     lUserId = lItems.userid;
                     lRoom = lItems.room;
@@ -144,7 +144,7 @@ if ((sslKeyPath) && (sslCertPath)) {
                 });
                 // path not found
             } else {
-                srvHelper.doHttpError(404, 'Not Found', res);
+                srvHelper.throwHttpError(404, 'Not Found', res);
             }
         }
     });
@@ -297,4 +297,4 @@ var socketio = {
 // connect sockets
 socketio.connectSockets();
 // delete user session older than 3 hours
-srvHelper.doDeleteOldSessions();
+srvHelper.deleteOldSessions();
