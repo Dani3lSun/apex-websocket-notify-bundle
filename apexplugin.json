@@ -1,0 +1,35 @@
+{
+  "name" : "APEX Websocket Notification Bundle",
+  "version" : "1.2.0",
+  "description" : "Purpose of this software bundle is to enable all APEX developers to use modern and state of the art web features like Node.js, Websockets to display nice looking notifications in their applications.",
+  "keywords" : ["notification", "notifications", "websocket", "socket", "nodejs", "node"],
+  "homepage" : "https://github.com/Dani3lSun/apex-websocket-notify-bundle",
+  "bugs" : {
+    "url" : "https://github.com/Dani3lSun/apex-websocket-notify-bundle/issues",
+    "email" : "daniel@danielh.de"
+  },
+  "license" : "MIT",
+  "author" : {
+    "name" : "Daniel Hochleitner",
+    "email" : "daniel@danielh.de",
+    "url" : "https://danielhochleitner.de",
+    "twitter" : "Dani3lSun",
+    "donationUrl" : "https://www.paypal.me/DanielHochleitnerIT/3"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/Dani3lSun/apex-websocket-notify-bundle.git"
+  },
+  "oracle" : {
+    "versions" : ["11.2.0.1", "12.1.0.1", "12.2.0.1"],
+    "apex" : {
+      "versions" : ["5.0.0", "5.1.0"],
+      "plugin" : {
+        "internalName" : "DE.DANIELH.WSNOTIFY",
+        "type" : "dynamic action",
+        "demo" : "https://apex.danielh.de/ords/f?p=WSNOTIFY",
+        "previewImage" : "https://raw.githubusercontent.com/Dani3lSun/apex-websocket-notify-bundle/master/docs/preview.gif"
+      }
+    }
+  }
+}
