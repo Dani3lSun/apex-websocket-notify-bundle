@@ -1,7 +1,7 @@
 /**
- * alertifyjs 1.8.0 http://alertifyjs.com
+ * alertifyjs 1.10.0 http://alertifyjs.com
  * AlertifyJS is a javascript framework for developing pretty browser dialogs and notifications.
- * Copyright 2016 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com) 
+ * Copyright 2017 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com) 
  * Licensed under GPL 3 <https://opensource.org/licenses/gpl-3.0>*/
 ( function ( window ) {
     'use strict';
@@ -43,7 +43,8 @@
         transition:'pulse',
         notifier:{
             delay:5,
-            position:'bottom-right'
+            position:'bottom-right',
+            closeButton:false
         },
         glossary:{
             title:'AlertifyJS',
@@ -320,11 +321,11 @@
     * @param  {string} evenType The type of the event to disptach.
     * @param  {object} instance The dialog instance disptaching the event.
     *
-    * @return {object}
+    * @return   {any}   The result of the invoked function.
     */
     function dispatchEvent(eventType, instance) {
         if ( typeof instance.get(eventType) === 'function' ) {
-            instance.get(eventType).call(instance);
+            return instance.get(eventType).call(instance);
         }
     }
 
@@ -485,6 +486,7 @@
                         padding:undefined,
                         overflow:undefined,
                         onshow:undefined,
+                        onclosing:undefined,
                         onclose:undefined,
                         onfocus:undefined,
                         onmove:undefined,
@@ -2454,38 +2456,41 @@
              */
             close: function () {
                 if (this.__internal.isOpen ) {
+                    // custom `onclosing` event
+                    if(dispatchEvent('onclosing', this) !== false){
 
-                    unbindEvents(this);
+                        unbindEvents(this);
 
-                    removeClass(this.elements.root, classes.animationIn);
-                    addClass(this.elements.root, classes.animationOut);
+                        removeClass(this.elements.root, classes.animationIn);
+                        addClass(this.elements.root, classes.animationOut);
 
-                    // set 1s fallback in case transition event doesn't fire
-                    clearTimeout( this.__internal.timerOut );
-                    this.__internal.timerOut = setTimeout( this.__internal.transitionOutHandler, transition.supported ? 1000 : 100 );
-                    // hide dialog
-                    addClass(this.elements.root, classes.hidden);
-                    //reflow
-                    reflow = this.elements.modal.offsetWidth;
+                        // set 1s fallback in case transition event doesn't fire
+                        clearTimeout( this.__internal.timerOut );
+                        this.__internal.timerOut = setTimeout( this.__internal.transitionOutHandler, transition.supported ? 1000 : 100 );
+                        // hide dialog
+                        addClass(this.elements.root, classes.hidden);
+                        //reflow
+                        reflow = this.elements.modal.offsetWidth;
 
-                    // remove custom dialog class on hide
-                    if (typeof this.__internal.className !== 'undefined' && this.__internal.className !== '') {
-                        removeClass(this.elements.root, this.__internal.className);
+                        // remove custom dialog class on hide
+                        if (typeof this.__internal.className !== 'undefined' && this.__internal.className !== '') {
+                            removeClass(this.elements.root, this.__internal.className);
+                        }
+
+                        // internal on close event
+                        if(typeof this.hooks.onclose === 'function'){
+                            this.hooks.onclose.call(this);
+                        }
+
+                        // allow custom `onclose` method
+                        dispatchEvent('onclose', this);
+
+                        //remove from open dialogs
+                        openDialogs.splice(openDialogs.indexOf(this),1);
+                        this.__internal.isOpen = false;
+
+                        ensureNoOverflow();
                     }
-
-                    // internal on close event
-                    if(typeof this.hooks.onclose === 'function'){
-                        this.hooks.onclose.call(this);
-                    }
-
-                    // allow custom `onclose` method
-                    dispatchEvent('onclose', this);
-
-                    //remove from open dialogs
-                    openDialogs.splice(openDialogs.indexOf(this),1);
-                    this.__internal.isOpen = false;
-
-                    ensureNoOverflow();
 
                 }
                 return this;
@@ -2531,7 +2536,8 @@
                 bottom: 'ajs-bottom',
                 left: 'ajs-left',
                 visible: 'ajs-visible',
-                hidden: 'ajs-hidden'
+                hidden: 'ajs-hidden',
+                close: 'ajs-close'
             };
         /**
          * Helper: initializes the notifier instance
@@ -2600,7 +2606,9 @@
         function create(div, callback) {
 
             function clickDelegate(event, instance) {
-                instance.dismiss(true);
+                if(!instance.__internal.closeButton || event.target.getAttribute('data-close') === 'true'){
+                    instance.dismiss(true);
+                }
             }
 
             function transitionDone(event, instance) {
@@ -2662,6 +2670,7 @@
                             wait = _wait;
                             break;
                         }
+                        this.__internal.closeButton = alertify.defaults.notifier.closeButton;
                         // set contents
                         if (typeof content !== 'undefined') {
                             this.setContent(content);
@@ -2744,6 +2753,12 @@
                     } else if (content instanceof window.HTMLElement && this.element.firstChild !== content) {
                         clearContents(this.element);
                         this.element.appendChild(content);
+                    }
+                    if(this.__internal.closeButton){
+                        var close = document.createElement('span');
+                        addClass(close, classes.close);
+                        close.setAttribute('data-close', true);
+                        this.element.appendChild(close);
                     }
                     return this;
                 },
