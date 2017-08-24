@@ -30,6 +30,8 @@
 
 # APEX Websocket Notification Bundle
 
+[![APEX Community](https://cdn.rawgit.com/Dani3lSun/apex-github-badges/78c5adbe/badges/apex-community-badge.svg)](https://github.com/Dani3lSun/apex-github-badges) [![APEX Plugin](https://cdn.rawgit.com/Dani3lSun/apex-github-badges/b7e95341/badges/apex-plugin-badge.svg)](https://github.com/Dani3lSun/apex-github-badges)
+
 Purpose of this software bundle was to enable all APEX developers to use modern and state of the art web features like Node, Websockets and nice looking notifications in their applications.
 
 This bundle includes all these features and simultaneously is designed to use all of them out of the box. This means:
